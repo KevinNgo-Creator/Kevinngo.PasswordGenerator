@@ -1,3 +1,4 @@
+//Element
 const passwordButton = document.querySelector("#password-button");
 const copyClipboardButton = document.querySelector("#copy-clipboard-button");
 const resultEL = document.getElementById('result');
@@ -14,22 +15,7 @@ const randomfunc = {
   symbol: randomSpecialCharacter,
 };
 
-//Click listen
-passwordButton.addEventListener("click" , (generatePassword) => {
-  const length = +lengthEL.value;
-  const trueLower = lowercaseEL;
-  const trueUpper = uppercaseEL;
-  const trueNumber = numberEL;
-  const trueSpecial = specialEL;
-
-  resultEL.innerText = generatePassword(
-    trueLower, 
-    trueUpper,  
-    trueNumber, 
-    trueSpecial,
-    length
-    );
-});
+console.log(randomfunc());
 
 //generate password
 function generatePassword(lower, upper ,number, symbol, length){
@@ -47,7 +33,7 @@ function generatePassword() {
   var lowercaseCharacter = confirm("Would you want lowercase characters?")
   var generatedPassword = ""
   while(generatedPassword.length < charactersCount){
-    generatedPassword += randomCharacter()    
+    generatedPassword += randomLowerCharacter()  
   }
 }
 
@@ -66,3 +52,21 @@ function generatePassword() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
   }
 
+  console.log(randomSpecialCharacter());
+
+//Click listen
+passwordButton.addEventListener("click" , generatePassword)
+//   const length = lengthEL;
+//   const trueLower = lowercaseEL;
+//   const trueUpper = uppercaseEL;
+//   const trueNumber = numberEL;
+//   const trueSpecial = specialEL;
+
+//   resultEL.innerText = generatedPassword(
+//     trueLower, 
+//     trueUpper,  
+//     trueNumber, 
+//     trueSpecial,
+//     length
+//     );
+// });
