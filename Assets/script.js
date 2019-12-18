@@ -8,21 +8,8 @@ const lowercaseEL = document.getElementById('lowercase');
 const numberEL = document.getElementById( 'number');
 const specialEL = document.getElementById('special');
 
-const randomfunc = {
-  lower: randomLowerCharacter,
-  upper: randomUpperCharacter,
-  number: randomNumberCharacter,
-  symbol: randomSpecialCharacter,
-};
-
-console.log(randomfunc());
-
-//generate password
-function generatePassword(lower, upper ,number, symbol, length){
-  let generatedPassword = '';
-  const typesCount = lower + upper + number + symbol;
-  console.log('typeCount: ', typesCount)
-}
+//Click listen
+passwordButton.addEventListener("click" , generatePassword);
 
 //generate prompts
 function generatePassword() {
@@ -33,40 +20,33 @@ function generatePassword() {
   var lowercaseCharacter = confirm("Would you want lowercase characters?")
   var generatedPassword = ""
   while(generatedPassword.length < charactersCount){
-    generatedPassword += randomLowerCharacter()  
+    generatedPassword += randomSpecialCharacter()  
+
+    var thePrompt = specialCharacter 
+    console.log(specialCharacter)
   }
 }
 
+
 //generate random character
   function randomSpecialCharacter() {
-    const symbols = '!@#$%^&*(){}[]=<>/,.';
+    const symbols = '!@#$%^&*()_+<>';
+    return symbols[Math.floor(Math.random() * symbols.length)];
+    console.log(randomSpecialCharacter);
+  }
+
+  function randomNumberCharacter() {
+    const symbols = '1234567890';
     return symbols[Math.floor(Math.random() * symbols.length)];
   }
-  function randomNumberCharacter() {
-    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-  }
   function randomUpperCharacter() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    const symbols = 'ABCDEFGHIJKLMNOPQRSTUVWZYZ';
+    return symbols[Math.floor(Math.random() * symbols.length)];
   }
   function randomLowerCharacter() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+    const symbols = 'abcdefghijklmnopqrstuvwxyz';
+    return symbols[Math.floor(Math.random() * symbols.length)];
   }
 
-  console.log(randomSpecialCharacter());
 
-//Click listen
-passwordButton.addEventListener("click" , generatePassword)
-//   const length = lengthEL;
-//   const trueLower = lowercaseEL;
-//   const trueUpper = uppercaseEL;
-//   const trueNumber = numberEL;
-//   const trueSpecial = specialEL;
-
-//   resultEL.innerText = generatedPassword(
-//     trueLower, 
-//     trueUpper,  
-//     trueNumber, 
-//     trueSpecial,
-//     length
-//     );
-// });
+//copy to clipboard
