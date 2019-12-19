@@ -39,10 +39,10 @@ function generatePassword() {
       generatedPassword.push(randomLowerCharacter());
     } else{}
 
-      for(var i = 0; i < length; i++){
-        const rnd = Math.floor(Math.random() + generatedPassword.length)
-        console.log(generatedPassword.join(''))
-  }
+          for(var i = 0; i < charactersCount; i++){
+            const rnd = Math.floor(Math.random() + charactersCount.length)
+            console.log(generatedPassword.join(''))
+          }
   }
  
   function randomSpecialCharacter() {
