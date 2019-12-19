@@ -2,51 +2,82 @@
 const passwordButton = document.querySelector("#password-button");
 const copyClipboardButton = document.querySelector("#copy-clipboard-button");
 const resultEL = document.getElementById('result');
-const lengthEL = document.getElementById('characterCount');
-const uppercaseEL = document.getElementById('uppercase');
-const lowercaseEL = document.getElementById('lowercase');
-const numberEL = document.getElementById( 'number');
-const specialEL = document.getElementById('special');
+var fullPassword = ""
 
 //Click listen
 passwordButton.addEventListener("click" , generatePassword);
 
 //generate prompts
 function generatePassword() {
-  var charactersCount = prompt("How many characters would you like?")
-  var specialCharacter = confirm("Would you want special characters?")
-  var numericCharacter = confirm("Would you want numeric characters?")
-  var uppercaseCharacter = confirm("Would you want uppercase characters?")
-  var lowercaseCharacter = confirm("Would you want lowercase characters?")
-  var generatedPassword = ""
-  while(generatedPassword.length < charactersCount){
-    generatedPassword += randomSpecialCharacter()  
-
-    var thePrompt = specialCharacter 
+  var charactersCount = prompt("How many characters would you like?");
+    console.log(charactersCount)
+  var specialCharacter = confirm("Would you want special characters?");
     console.log(specialCharacter)
+  var numericCharacter = confirm("Would you want numeric characters?");
+    console.log(numericCharacter)
+  var uppercaseCharacter = confirm("Would you want uppercase characters?");
+    console.log(uppercaseCharacter)
+  var lowercaseCharacter = confirm("Would you want lowercase characters?");
+    console.log(lowercaseCharacter)
+
+  var generatedPassword = [];
+    if(specialCharacter === true){
+      var returnSpecial = randomSpecialCharacter();
+      generatedPassword.push(randomSpecialCharacter());
+      // console.log(returnSpecial);
+    } else{}
+    if(numericCharacter === true){
+      var returnNumber = randomNumberCharacter
+      generatedPassword.push(randomNumberCharacter());
+    } else{}
+    if(uppercaseCharacter === true){
+      var returnUpper = randomUpperCharacter
+      generatedPassword.push(randomUpperCharacter());
+    } else{}
+    if(lowercaseCharacter === true){
+      var returnLower = randomLowerCharacter
+      generatedPassword.push(randomLowerCharacter());
+    } else{}
+
+      for(var i = 0; i < length; i++){
+        const rnd = Math.floor(Math.random() + generatedPassword.length)
+        console.log(generatedPassword.join(''))
   }
-}
-
-
-//generate random character
+  }
+ 
   function randomSpecialCharacter() {
-    const symbols = '!@#$%^&*()_+<>';
-    return symbols[Math.floor(Math.random() * symbols.length)];
-    console.log(randomSpecialCharacter);
+    const randomSymbols = '!@#$%^&*()_+<>'.split("");
+    var randomSym = Math.floor(Math.random() * randomSymbols.length);
+    console.log(randomSymbols[randomSym]);
+    return randomSymbols[randomSym];
   }
-
   function randomNumberCharacter() {
-    const symbols = '1234567890';
-    return symbols[Math.floor(Math.random() * symbols.length)];
+    const randomNumber = '1234567890'.split("");
+    var randomNum = Math.floor(Math.random() * randomNumber.length);
+    console.log(randomNumber[randomNum]);
+    return randomNumber[randomNum];
   }
   function randomUpperCharacter() {
-    const symbols = 'ABCDEFGHIJKLMNOPQRSTUVWZYZ';
-    return symbols[Math.floor(Math.random() * symbols.length)];
+    const randomUpper = 'ABCDEFGHIJKLMNOPQRSTUVWZYZ'.split("");
+    var  randomUpp = Math.floor(Math.random() * randomUpper.length);
+    console.log(randomUpper[randomUpp]);
+    return randomUpper[randomUpp];
   }
   function randomLowerCharacter() {
-    const symbols = 'abcdefghijklmnopqrstuvwxyz';
-    return symbols[Math.floor(Math.random() * symbols.length)];
+    const randomLower = 'abcdefghijklmnopqrstuvwxyz'.split("");
+    var  randomLow = Math.floor(Math.random() * randomLower.length);
+    console.log(randomLower[randomLow]);
+    return randomLower[randomLow];
   }
+
 
 
 //copy to clipboard
+const copyClipboard = str => {
+  const el = document.createElement("result");
+  el.value = str;
+  document.body.appendChild(el);
+  el.selector();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
