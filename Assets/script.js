@@ -1,16 +1,15 @@
 //Element
-const passwordButton = document.querySelector("#password-button");
-const copyClipboardButton = document.querySelector("#copy-clipboard-button");
-const resultEL = document.getElementById('result');
+var passwordButton = document.querySelector("#password-button");
+var copyClipboardButton = document.querySelector("#copy-clipboard-button");
+var resultEL = document.getElementById('result');
 var fullPassword = ""
 
-//Click listen
-passwordButton.addEventListener("click" , generatePassword);
+passwordButton.addEventListener("click", generatePassword);
 
 //generate prompts
 function generatePassword() {
-  var charactersCount = prompt("How many characters would you like?");
-    console.log(charactersCount)
+  var charactersCounts = prompt("How many characters would you like?");
+    console.log(charactersCounts)
   var specialCharacter = confirm("Would you want special characters?");
     console.log(specialCharacter)
   var numericCharacter = confirm("Would you want numeric characters?");
@@ -24,60 +23,47 @@ function generatePassword() {
     if(specialCharacter === true){
       var returnSpecial = randomSpecialCharacter();
       generatedPassword.push(randomSpecialCharacter());
-      // console.log(returnSpecial);
-    } else{}
+    } 
     if(numericCharacter === true){
-      var returnNumber = randomNumberCharacter
+      var returnNumber = randomNumberCharacter();
       generatedPassword.push(randomNumberCharacter());
-    } else{}
+    } 
     if(uppercaseCharacter === true){
-      var returnUpper = randomUpperCharacter
+      var returnUpper = randomUpperCharacter();
       generatedPassword.push(randomUpperCharacter());
-    } else{}
+    }
     if(lowercaseCharacter === true){
-      var returnLower = randomLowerCharacter
+      var returnLower = randomLowerCharacter();
       generatedPassword.push(randomLowerCharacter());
-    } else{}
+    } 
 
-          for(var i = 0; i < charactersCount; i++){
-            const rnd = Math.floor(Math.random() + charactersCount.length)
-            console.log(generatedPassword.join(''))
-          }
-  }
- 
   function randomSpecialCharacter() {
-    const randomSymbols = '!@#$%^&*()_+<>'.split("");
-    var randomSym = Math.floor(Math.random() * randomSymbols.length);
-    console.log(randomSymbols[randomSym]);
-    return randomSymbols[randomSym];
+    var randomSymbols = '!@#$%^&*()_+<>'.split("");
+    var randomSym = randomSymbols[Math.floor(Math.random()*randomSymbols.length)];
+    console.log(randomSym);
+    return randomSym;
   }
   function randomNumberCharacter() {
-    const randomNumber = '1234567890'.split("");
-    var randomNum = Math.floor(Math.random() * randomNumber.length);
-    console.log(randomNumber[randomNum]);
-    return randomNumber[randomNum];
+    var randomNumber = '1234567890'.split("");
+    var randomNum = randomNumber[Math.floor(Math.random()*randomNumber.length)];
+    console.log(randomNum);
+    return randomNum;
   }
   function randomUpperCharacter() {
-    const randomUpper = 'ABCDEFGHIJKLMNOPQRSTUVWZYZ'.split("");
-    var  randomUpp = Math.floor(Math.random() * randomUpper.length);
-    console.log(randomUpper[randomUpp]);
-    return randomUpper[randomUpp];
+    var randomUpper = 'ABCDEFGHIJKLMNOPQRSTUVWZYZ'.split("");
+    var randomUpp = randomUpper[Math.floor(Math.random()*randomUpper.length)];
+    console.log(randomUpp);
+    return randomUpp;
   }
   function randomLowerCharacter() {
-    const randomLower = 'abcdefghijklmnopqrstuvwxyz'.split("");
-    var  randomLow = Math.floor(Math.random() * randomLower.length);
-    console.log(randomLower[randomLow]);
-    return randomLower[randomLow];
+    var randomLower = 'abcdefghijklmnopqrstuvwxyz'.split("");
+    var  randomLow = randomLower[Math.floor(Math.random()*randomLower.length)];
+    console.log(randomLow);
+    return randomLow;
   }
-
-
-
-//copy to clipboard
-const copyClipboard = str => {
-  const el = document.createElement("result");
-  el.value = str;
-  document.body.appendChild(el);
-  el.selector();
-  document.execCommand('copy');
-  document.body.removeChild(el);
+  
+  for(var i = 0; i < charactersCounts; i++){
+    randomSpecialCharacter() 
+    console.log(returnSpecial.concat(returnNumber, returnUpper, returnLower));
+  }
 }
