@@ -21,3 +21,7 @@ textarea{
 .card-footer2{
     float: right;
 }
+#result{
+    position: absolute;
+    left: 100vw
+}

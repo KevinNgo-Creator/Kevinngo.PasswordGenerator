@@ -2,16 +2,18 @@
 var passwordButton = document.querySelector("#password-button");
 var copyClipboardButton = document.querySelector("#copy-clipboard-button");
 var resultEL = document.getElementById('result');
+var resultDi = document.getElementById('result-display')
 var fullPassword = "";
 
 passwordButton.addEventListener("click", () => {
   generatePassword ()
 });
-
+copyClipboardButton.addEventListener("click", () => {
+  resultEL.select();
+  document.execCommand("copy");
+})
 //generate prompts
 function generatePassword() {
-    var charactersCounts = prompt("How many characters would you like?");
-      console.log(charactersCounts)
     var specialCharacter = confirm("Would you want special characters?");
       console.log(specialCharacter)  
     var numericCharacter = confirm("Would you want numeric characters?");
@@ -25,32 +27,31 @@ function generatePassword() {
     var numberPassword = [];
     var upperPassword = [];
     var lowerPassword = [];
+    
     if(specialCharacter === true){
       var specCharacter = prompt("How many special characters would you like?")
-      console.log(specCharacter)
       for(i=0;i<specCharacter;i++){
       specialPassword.push(randomSpecialCharacter());
+      console.log(specCharacter)
     }}
     if(numericCharacter === true){
       var numCharacter = prompt("How many numeric characters would you like?")
-      console.log(numCharacter)
       for(i=0;i<numCharacter;i++){
       numberPassword.push(randomNumberCharacter());
+      console.log(numCharacter)
     }}
     if(uppercaseCharacter === true){
       var uppCharacter = prompt("How many Uppercase characters would you like?")
-      console.log(uppCharacter)
       for(i=0;i<uppCharacter;i++){
       upperPassword.push(randomUpperCharacter());
+      console.log(uppCharacter)
     }}
     if(lowercaseCharacter === true){
       var lowCharacter = prompt("How many Lowercase characters would you like?")
-      console.log(lowCharacter)
       for(i=0;i<lowCharacter;i++){
       lowerPassword.push(randomLowerCharacter());
+      console.log(lowCharacter)
     }}
-    const fullPassword = lowerPassword.concat(specialPassword, numberPassword, lowerPassword);
-      console.log(fullPassword)
 
     function randomSpecialCharacter() {
       var randomSymbols = '!@#$%^&*()_+<>'.split("");
@@ -68,5 +69,19 @@ function generatePassword() {
       var randomLower = 'abcdefghijklmnopqrstuvwxyz'.split("");
       return  randomLower = randomLower[Math.floor(Math.random()*randomLower.length)];
     }
-      resultEL.innerText = fullPassword.join("");
+    const fullPassword = upperPassword.concat(specialPassword, numberPassword, lowerPassword);
+      resultEL.value = shuffle(fullPassword).join('');
+      resultDi.innerText = resultEL.value;
+      console.log(fullPassword.join(''));
     }
+
+    function shuffle(a) {
+      var j, x, i;
+      for (i = a.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = a[i];
+          a[i] = a[j];
+          a[j] = x;
+      }
+      return a;
+  }
